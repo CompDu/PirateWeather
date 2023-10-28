@@ -21,7 +21,7 @@ namespace PirateWeather
         public async Task<WeatherRoot> GetWeatherAsync()
         {
            
-            var request = new HttpRequestMessage(HttpMethod.Get,""); 
+            var request = new HttpRequestMessage(HttpMethod.Get,"https://github.com/CompDu/PirateWeather/blob/master/PirateWeather/PirateWeather.json"); 
             HttpResponseMessage response = await client.SendAsync(request);
             if(response.IsSuccessStatusCode)
             {
