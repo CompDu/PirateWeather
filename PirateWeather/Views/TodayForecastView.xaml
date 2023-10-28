@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:PirateWeather.Models"
+             xmlns:viewmodel="clr-namespace:PirateWeather.ViewModels"
+             x:DataType="viewmodel:TodayForecastViewModel"
+             x:Class="PirateWeather.Views.TodayForecastView"
+             Title="Todays Forecast">
+    <VerticalStackLayout IsVisible="{Binding IsNotBusy}"
+                         IsEnabled="{Binding IsNotBusy}" >
+       
+        <Frame BorderColor="Black" BackgroundColor="Green"
+       IsVisible="{Binding IsNotBusy}">
+            <Frame.Background>
+                <LinearGradientBrush EndPoint="1,0">
+                    <GradientStop Color="Green"
+                              Offset ="0.3"/>
+                    <GradientStop Color="LightGreen"
+                              Offset="1.0"/>
+                </LinearGradientBrush>
+            </Frame.Background>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Border>
+                    <Label Text="{Binding CurrentForecast.Day}"
+                  FontSize="Title"
+                  FontAttributes="Bold"
+                  Margin="2"
+                  Padding="1"/>
+                </Border>
+                <Label Text="{Binding ErrorMessage}"
+                   FontSize="Subtitle"
+                   TextColor="Red"
+                   Grid.Column="1"
+                   Margin="2"
+                   Padding="1"
+                   />
+
+
+                <Label Text="{Binding CurrentForecast.Temperature,StringFormat='Temp. : {0} deg C'}"
+                    Grid.Row="1"
+                   FontSize="Medium"
+                   Margin="2"
+                   Padding="1"
+                   />
+
+
+                <Label Text="{Binding CurrentForecast.Summary}" 
+                   FontSize="Medium"
+                   Grid.Row="1"
+                   Grid.Column="1"
+                   Margin="2"
+                   Padding="1"
+                   />
+
+
+
+            </Grid>
+
+        </Frame>
+
+        <CollectionView
+                ItemsSource="{Binding HourlyForecasts}"
+                VerticalScrollBarVisibility="Always"
+                >
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:HourlyForecastModel">
+                  
+                        <Frame BorderColor="Black">
+                            <Frame.Background>
+                                <LinearGradientBrush EndPoint="1,0">
+                                    <GradientStop Color="Blue"
+                                          Offset="0.4"/>
+                                    <GradientStop Color="AliceBlue"
+                                          Offset="1.0"/>
+                                </LinearGradientBrush>
+                            </Frame.Background>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                  CommandParameter="{Binding . }"
+                                                  Command="{Binding Source= {RelativeSource AncestorType={x:Type viewmodel:TodayForecastViewModel}},Path=ViewHourlyForecastCommand}">
+
+                                </TapGestureRecognizer>
+                            </Frame.GestureRecognizers>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40"/>
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="100"/>
+                                </Grid.ColumnDefinitions>
+                            <Border>
+                                <Label Text="{Binding Hour,StringFormat='{0}h00'}"  
+                               Padding="2" 
+                               Margin="5"
+                               FontSize="Medium"
+                               FontAttributes="Bold"
+                                                    />
+                            </Border>
+                                <Image Source="{Binding Icon}"
+                            Grid.Column="0"
+                               Grid.Row="0"
+                                       HorizontalOptions="End"
+                                       VerticalOptions="Start"/>
+
+                                <Label Text="{Binding Temperature,StringFormat='{0} deg celcius'}" 
+                                       Padding="2" 
+                                       Margin="5"
+                                       Grid.Column="0" Grid.Row="1"/>
+
+                                <Label Text="{Binding PrecipProbability,StringFormat='{0}% chance rain'}" 
+                                       Padding="2" 
+                                       Margin="5"
+                                       Grid.Row="1"
+                                       Grid.Column="1"/>
+
+                            </Grid>
+
+                        </Frame>
+                    
+                </DataTemplate>
+
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+
+        <ActivityIndicator
+        IsRunning="{Binding IsBusy}"
+        Color="Red"
+        HorizontalOptions="Center"
+        VerticalOptions="Center"/>
+    
+    </VerticalStackLayout>
+
+</ContentPage>

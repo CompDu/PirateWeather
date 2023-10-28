@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:PirateWeather.ViewModels"
+             xmlns:model="clr-namespace:PirateWeather.Models"
+             x:DataType="viewmodel:HourlyForecastViewModel"
+             x:Class="PirateWeather.Views.HourlyForecastView"
+             Title="HourlyForecastView">
+
+        <Frame>
+            <Frame.Background>
+                <LinearGradientBrush EndPoint="1,0">
+                    <GradientStop Color="Yellow"
+                                  Offset="0.3"/>
+                    <GradientStop Color="Green"
+                                  Offset="1.0"/>
+                </LinearGradientBrush>
+            </Frame.Background>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+            </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="1">
+                <Label Text="{Binding HourlyForecast.Hour,StringFormat='{0}h00 :'}"
+                   FontAttributes="Bold"
+                   FontSize="Title"
+                   Grid.Column="1"
+                   Margin="5"
+                   Padding="2"/>
+            </Border>
+                <Label Text="{Binding HourlyForecast.Temperature,StringFormat='{0} deg C'}"
+                        FontSize="Body"
+                       Grid.Row="1"
+                       />
+           
+                <Label Text="{Binding HourlyForecast.CloudCover,StringFormat='{0} cover'}"
+                       FontSize="Body"
+                       Grid.Row="2"
+                       />
+            
+                <Label Text="{Binding HourlyForecast.UvIndex,StringFormat='{0} Uv Index'}"
+                        FontSize="Body"
+                        Grid.Row="3"/>
+                <Label Text="{Binding HourlyForecast.Humidity,StringFormat='{0} Humidity'}"
+                        FontSize="Body"
+                        Grid.Row="4"/>
+                <Label Text="{Binding HourlyForecast.PrecipProbability,StringFormat='{0} Chance rain'}"
+                        FontSize="Body"
+                        Grid.Row="5"/>
+            <Label Text="{Binding HourlyForecast.Summary}"
+                        FontSize="Body"
+                        Grid.Row="6"/>
+
+            <Label Text="{Binding HourlyForecast.WindSpeed,StringFormat='{0} knots'}"
+                        FontSize="Body"
+                        Grid.Row="7"/>
+
+        </Grid>
+        </Frame>
+    
+</ContentPage>
