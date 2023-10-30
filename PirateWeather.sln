@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34009.444
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PirateWeather", "PirateWeather\PirateWeather.csproj", "{7471C3ED-EA73-48B6-8C47-FDD18DCBBF91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PirateWeather", "PirateWeather\PirateWeather.csproj", "{7471C3ED-EA73-48B6-8C47-FDD18DCBBF91}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{E4B42F01-BA16-44B7-A1B2-C5DAAA4794A6}"
+	ProjectSection(SolutionItems) = preProject
+		PirateWeather\docs\PirateWeather.json = PirateWeather\docs\PirateWeather.json
+		PirateWeather\docs\README.md = PirateWeather\docs\README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
